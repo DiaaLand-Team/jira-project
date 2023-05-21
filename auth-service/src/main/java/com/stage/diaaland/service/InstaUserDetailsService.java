@@ -21,6 +21,6 @@ public class InstaUserDetailsService implements UserDetailsService {
         return userService
                 .findByUsername(username)
                 .map(InstaUserDetails::new)
-                .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("Username not found, check your error"));
     }
 }
