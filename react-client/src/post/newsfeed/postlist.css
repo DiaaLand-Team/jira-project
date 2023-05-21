@@ -3,6 +3,7 @@
   margin-top: 10px;
 }
 
+/* this is a post card*/
 .post-card {
   width: 96%;
   margin-bottom: 60px;
@@ -15,7 +16,7 @@
 .post-user-container {
   padding: 12px;
 }
-
+/* this is a post username class*/
 .post-username {
   font-weight: 600;
   color: #262626;
