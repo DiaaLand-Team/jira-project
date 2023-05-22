@@ -1,0 +1,43 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - sprint-1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 19
+        uses: actions/setup-java@v2
+        with:
+          java-version: '19.0.2+7'
+          distribution: 'adopt'
+
+      - name: Build and run backend
+        run: |
+          mvn clean install
+
+        env:
+          SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydb
+          SPRING_DATASOURCE_USERNAME: myuser
+          SPRING_DATASOURCE_PASSWORD: mypassword
+
+      - name: Run backend tests
+        run: |
+          mvn test
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      - name: Build and run frontend
+        run: |
+          cd front-end/front-end
+          npm install
+          ng build --configuration=production
+
